@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>CampusFlow | Your Academic Space</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="app">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+        <a href="#" class="brand">Campus<span>Flow.</span></a>
+        <p class="sidebar-label">WORKSPACE</p>
+
+        <nav>
+            <button class="nav-link active" data-page="dashboard">⌂ Dashboard</button>
+            <button class="nav-link" data-page="tasks">▤ My Tasks</button>
+            <button class="nav-link" data-page="timetable">▦ Timetable</button>
+            <button class="nav-link" data-page="planner">◷ Study Planner</button>
+            <button class="nav-link" data-page="notes">▧ My Notes</button>
+        </nav>
+
+        <div class="sidebar-bottom">
+            <p>STAY FOCUSED.</p>
+            <span>Small steps. Big progress.</span>
+        </div>
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <main class="main-content">
+
+        <header class="topbar">
+            <div>
+                <p class="eyebrow">YOUR PERSONAL STUDY SPACE</p>
+                <h1 id="pageTitle">Dashboard</h1>
+            </div>
+            <div class="date-display" id="todayDate"></div>
+        </header>
+
+        <!-- DASHBOARD -->
+        <section class="page active" id="dashboard">
+
+            <div class="welcome-card">
+                <div>
+                    <p class="eyebrow">A FRESH START</p>
+                    <h2>Make today count.</h2>
+                    <p>Organise your studies, one step at a time.</p>
+                </div>
+                <div class="welcome-symbol">✦</div>
+            </div>
+
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <p>Total Tasks</p>
+                    <h2 id="totalTasks">0</h2>
+                    <span>All your tasks</span>
+                </div>
+
+                <div class="stat-card">
+                    <p>Completed</p>
+                    <h2 id="completedTasks">0</h2>
+                    <span>Tasks finished</span>
+                </div>
+
+                <div class="stat-card">
+                    <p>Pending</p>
+                    <h2 id="pendingTasks">0</h2>
+                    <span>Still to do</span>
+                </div>
+            </div>
+
+            <div class="content-grid">
+                <div class="panel">
+                    <div class="panel-heading">
+                        <h3>Recent Tasks</h3>
+                        <button class="text-button" data-go="tasks">View all →</button>
+                    </div>
+                    <div id="recentTasks" class="empty-state">
+                        No tasks yet. Add your first task!
+                    </div>
+                </div>
+
+                <div class="panel">
+                    <h3>Your Progress</h3>
+                    <p class="muted">Completed tasks</p>
+
+                    <div class="progress-track">
+                        <div class="progress-fill" id="progressFill"></div>
+                    </div>
+
+                    <h2 id="progressText">0%</h2>
+                    <p class="muted">Keep moving forward!</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- TASKS -->
+        <section class="page" id="tasks">
+
+            <div class="section-intro">
+                <h2>Manage your tasks</h2>
+                <p>Write down what needs to get done.</p>
+            </div>
+
+            <div class="panel">
+                <form id="taskForm">
+                    <div class="form-grid">
+                        <div class="field">
+                            <label for="taskName">Task name</label>
+                            <input type="text" id="taskName"
+                                placeholder="e.g. Complete Java assignment"
+                                required>
+                        </div>
+
+                        <div class="field">
+                            <label for="taskDate">Deadline</label>
+                            <input type="date" id="taskDate">
+                        </div>
+
+                        <div class="field">
+                            <label for="taskCategory">Category</label>
+                            <select id="taskCategory">
+                                <option>Study</option>
+                                <option>Assignment</option>
+                                <option>Personal</option>
+                                <option>Other</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <button class="primary-button" type="submit">
+                        + Add Task
+                    </button>
+                </form>
+            </div>
+
+            <div class="panel task-panel">
+                <h3>Your Task List</h3>
+                <div id="taskList" class="task-list">
+                    <div class="empty-state">Your task list is empty.</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- TIMETABLE -->
+        <section class="page" id="timetable">
+
+            <div class="section-intro">
+                <h2>Your weekly timetable</h2>
+                <p>Keep your academic schedule organised.</p>
+            </div>
+
+            <div class="panel">
+                <form id="classForm">
+                    <div class="form-grid">
+                        <div class="field">
+                            <label for="className">Subject</label>
+                            <input id="className" type="text"
+                                placeholder="e.g. Mathematics" required>
+                        </div>
+
+                        <div class="field">
+                            <label for="classDay">Day</label>
+                            <select id="classDay">
+                                <option>Monday</option>
+                                <option>Tuesday</option>
+                                <option>Wednesday</option>
+                                <option>Thursday</option>
+                                <option>Friday</option>
+                                <option>Saturday</option>
+                                <option>Sunday</option>
+                            </select>
+                        </div>
+
+                        <div class="field">
+                            <label for="classTime">Time</label>
+                            <input id="classTime" type="time" required>
+                        </div>
+                    </div>
+
+                    <button class="primary-button" type="submit">
+                        + Add Class
+                    </button>
+                </form>
+            </div>
+
+            <div class="panel">
+                <h3>My Classes</h3>
+                <div id="classList" class="task-list empty-state">
+                    No classes added yet.
+                </div>
+            </div>
+        </section>
+
+        <!-- STUDY PLANNER -->
+        <section class="page" id="planner">
+
+            <div class="section-intro">
+                <h2>Study Planner</h2>
+                <p>Make time for what matters.</p>
+            </div>
+
+            <div class="panel">
+                <form id="studyForm">
+                    <div class="form-grid">
+                        <div class="field">
+                            <label for="studySubject">Subject</label>
+                            <input id="studySubject" type="text"
+                                placeholder="e.g. Java Programming" required>
+                        </div>
+
+                        <div class="field">
+                            <label for="studyDate">Study date</label>
+                            <input id="studyDate" type="date" required>
+                        </div>
+
+                        <div class="field">
+                            <label for="studyDuration">Duration</label>
+                            <select id="studyDuration">
+                                <option>30 minutes</option>
+                                <option>1 hour</option>
+                                <option>1.5 hours</option>
+                                <option>2 hours</option>
+                                <option>3 hours</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <button class="primary-button" type="submit">
+                        + Add Study Session
+                    </button>
+                </form>
+            </div>
+
+            <div class="panel">
+                <h3>Upcoming Study Sessions</h3>
+                <div id="studyList" class="task-list empty-state">
+                    No study sessions planned.
+                </div>
+            </div>
+        </section>
+
+        <!-- NOTES -->
+        <section class="page" id="notes">
+
+            <div class="section-intro">
+                <h2>My Notes</h2>
+                <p>A little space for all your important thoughts.</p>
+            </div>
+
+            <div class="panel">
+                <form id="noteForm">
+                    <div class="field">
+                        <label for="noteTitle">Note title</label>
+                        <input id="noteTitle" type="text"
+                            placeholder="Give your note a title" required>
+                    </div>
+
+                    <div class="field">
+                        <label for="noteContent">Your note</label>
+                        <textarea id="noteContent" rows="5"
+                            placeholder="Write something here..."
+                            required></textarea>
+                    </div>
+
+                    <button class="primary-button" type="submit">
+                        + Save Note
+                    </button>
+                </form>
+            </div>
+
+            <div class="notes-grid" id="notesList">
+                <div class="empty-state">No notes saved yet.</div>
+            </div>
+        </section>
+
+        <footer>
+            <p>©️ 2026 CampusFlow. Designed for better days and brighter goals.</p>
+        </footer>
+
+    </main>
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>
